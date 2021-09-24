@@ -27,12 +27,213 @@ html {
 	}
 }
 
-.principal-view {
-	width: 100%;
-	height: 100%;
-	background-color: $dashboard-background;
+.standard-section-title {
+	font-weight: 900;
+	font-size: 16px;
+	color: #444;
+	margin-left: 8px;
+}
 
-	.container {
-		padding: 20px;
+.admin {
+	height: 100%;
+	overflow-y: hidden;
+
+	.admin-sections {
+		width: 100%;
+		height: 100%;
+		padding: 20px 50px 38px;
+		background-color: $dashboard-background;
+
+		overflow: auto;
+
+		.row {
+			margin: 0;
+
+			.section-title {
+				padding: 15px 12px;
+				font-size: 2.5rem;
+				font-weight: 400;
+				color: $text-color-white;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.admin {
+		margin-left: 0;
+	}
+}
+
+/*------------------------------------------------------------------------------------------*/
+/*---------------------------------------- GRAFICOS ----------------------------------------*/
+/*------------------------------------------------------------------------------------------*/
+
+$radius: 12px;
+
+.graphs {
+	.graficos-ind {
+		@include displayFlex(column, space-between, center);
+		padding: 10px;
+		height: 400px;
+		border-radius: $radius;
+
+		.mid-section-row {
+			height: 47%;
+			background-color: #fff;
+			border-radius: $radius;
+			box-shadow: 0px 0px 10px 0px $shadow;
+			padding: 20px;
+
+			.section-container {
+				@include displayFlex(row, center, center);
+				width: 100%;
+				height: 100%;
+			}
+
+			/*------------------------------------------------------------------------------------------*/
+			/*------------------------------------ FILTRO DE FECHAS ------------------------------------*/
+			/*------------------------------------------------------------------------------------------*/
+
+			.filter-section {
+				@include displayFlex(column, flex-start, baseline);
+				width: 100%;
+				height: 100%;
+
+				.dates-form {
+					@include displayFlex(row, center, center);
+					width: 100%;
+					height: 100%;
+
+					@media screen and (max-width: 1200px) {
+						@include displayFlex(column, center, center);
+					}
+
+					.form-container {
+						width: 400px;
+
+						@media screen and (max-width: 1050px) {
+							width: 100%;
+						}
+
+						.form-fields {
+							@include displayFlex(row, space-between, center);
+							width: 100%;
+
+							.date-container {
+								@include displayFlex(null, center, center);
+								width: 50%;
+								height: 40px;
+
+								.date-field {
+									width: 100%;
+									height: 100%;
+									padding: 20px 10px;
+									background: rgb(242, 241, 241);
+									border: none;
+									border-radius: 5px;
+								}
+							}
+						}
+
+						.btn-submit-form {
+							height: 40px;
+							width: 100%;
+							background-color: $primary-color;
+							border: none;
+							border-radius: 5px;
+							color: #fff;
+							margin-top: 15px;
+							transition: all 0.1s ease-in;
+
+							&:hover {
+								font-style: bold;
+								background-color: $primary-color--hover;
+							}
+
+							/* @media screen and (max-width: 400px) {
+							} */
+						}
+					}
+				}
+			}
+
+			/*------------------------------------------------------------------------------------------*/
+			/*------------------------------------ EXPORTAR A EXCEL ------------------------------------*/
+			/*------------------------------------------------------------------------------------------*/
+
+			.export-container-container {
+				@include displayFlex(null, center, center);
+				height: 100%;
+
+				.export-container {
+					@include displayFlex(row, center, center);
+					height: 45px;
+					width: 300px;
+
+					.excel-icon {
+						margin-right: 40px;
+						width: 70px;
+					}
+
+					.excel-btn {
+						width: fit-content;
+						font-size: 18px;
+						padding: 15px;
+						color: #fff;
+						background-color: $excel-icon;
+						border-radius: 5px;
+						cursor: pointer;
+						transition: all 0.1s ease-in;
+
+						&:hover {
+							background-color: $excel-icon--hover;
+						}
+					}
+				}
+			}
+		}
+
+		.graph-container {
+			@include displayFlex(null, center, center);
+			width: 100%;
+			height: 100%;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: $radius;
+			box-shadow: 0px 0px 10px 0px $shadow;
+
+			/*------------------------------------------------------------------------------------------*/
+			/*----------------------------------- CONTADOR DE ACCESOS ----------------------------------*/
+			/*------------------------------------------------------------------------------------------*/
+
+			.login-counter-container {
+				@include displayFlex(column, flex-start, baseline);
+				width: 100%;
+				height: 100%;
+
+				.login-container {
+					@include displayFlex(column, center, center);
+					width: 100%;
+					height: 100%;
+
+					.login-counter {
+						font-size: 6rem;
+						margin-bottom: 20px;
+					}
+
+					.counter-text {
+						span {
+							color: $dark-green-logo;
+						}
+					}
+				}
+			}
+
+			.graph-content {
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
 }
