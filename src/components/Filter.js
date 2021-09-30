@@ -28,7 +28,7 @@ export default function Filter({ setDateInterval, setCuadroInformativo, setInfoP
 							Axios.post('http://localhost:3001/getAuditoriaPorcentajes', values).then((res) => {
 								setInfoPorcentajes(res.data);
 							});
-
+							
 							Axios.post('http://localhost:3001/getAuditoriaCuadroInformativo', values).then((res) => {
 								setCuadroInformativo(res.data);
 							});

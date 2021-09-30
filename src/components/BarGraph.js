@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
+
 export default function BarGraph({ titleText }) {
-	const series = [
+	const series  = [
 		{
 			data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
 		},
@@ -25,6 +26,7 @@ export default function BarGraph({ titleText }) {
 		colors: ['#5BA92A'],
 		xaxis: {
 			categories: [
+				
 				'South Korea',
 				'Canada',
 				'United Kingdom',

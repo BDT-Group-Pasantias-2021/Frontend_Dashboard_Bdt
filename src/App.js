@@ -17,7 +17,7 @@ export default function App() {
 
 	const [infoPorcentajes, setInfoPorcentajes] = useState(null);
 	const [cuadroInformativo, setCuadroInformativo] = useState(null);
-
+	console.log(infoPorcentajes)
 	return (
 		<main className="admin">
 			<div className="admin-sections">
