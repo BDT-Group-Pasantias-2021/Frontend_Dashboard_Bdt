@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 
 // Componentes
 import BarGraph from './components/BarGraph';
@@ -10,30 +11,25 @@ import Filter from './components/Filter';
 import './css/inicio.css';
 
 // Values
-/* const categories: {
-	[
-		'Login',
-		'Canada',
-		'United Kingdom',
-		'Netherlands',
-		'Italy',
-		'France',
-		'Japan',
-		'United States',
-		'China',
-		'Germany',
-	]
-} */
 
 export default function App() {
+	const [dateInterval, setDateInterval] = useState({});
+
+	const [infoPorcentajes, setInfoPorcentajes] = useState(null);
+	const [cuadroInformativo, setCuadroInformativo] = useState(null);
+
 	return (
 		<main className="admin">
 			<div className="admin-sections">
 				<div className="graphs row">
 					<h1 className="section-title col-12">Dashboard</h1>
-					<StatsCounter />
+					<StatsCounter dateInterval={dateInterval} />
 					<div className="graficos-ind col-12 col-md-6">
-						<Filter />
+						<Filter
+							setDateInterval={setDateInterval}
+							setCuadroInformativo={setCuadroInformativo}
+							setInfoPorcentajes={setInfoPorcentajes}
+						/>
 						<div className="mid-section-row col-12">
 							<div className="export-container-container">
 								<div className="export-container">
@@ -43,8 +39,8 @@ export default function App() {
 							</div>
 						</div>
 					</div>
-					<BarGraph />
-					<BarGraph />
+					<BarGraph titleText="Información general de accesos" />
+					<BarGraph titleText="Cantidad de accesos a Email/Sms" />
 				</div>
 			</div>
 		</main>

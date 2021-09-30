@@ -1,9 +1,12 @@
 import React from 'react';
+import Axios from 'axios';
 
 // Components
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
-export default function Filter() {
+export default function Filter({ setDateInterval, setCuadroInformativo, setInfoPorcentajes }) {
+	//setDateInterval('values');
+
 	return (
 		<div className="mid-section-row col-12">
 			<div className="section-container">
@@ -11,8 +14,8 @@ export default function Filter() {
 					<div className="standard-section-title">Buscar por intervalo de fechas</div>
 					<Formik
 						initialValues={{
-							primer_fecha: '',
-							segunda_fecha: '',
+							fechaInicio: '',
+							fechaFin: '',
 						}}
 						validate={(values) => {
 							const errors = {};
@@ -20,11 +23,19 @@ export default function Filter() {
 						}}
 						onSubmit={async (values) => {
 							alert(JSON.stringify(values, null, 2));
-							/* Axios.post('http://localhost:3001/Rasn/admin/faq/actualizar-pregunta', values)
-							.then((res) => {
+							setDateInterval(values);
+
+							Axios.post('http://localhost:3001/getAuditoriaPorcentajes', values).then((res) => {
+								setInfoPorcentajes(res.data);
+							});
+
+							Axios.post('http://localhost:3001/getAuditoriaCuadroInformativo', values).then((res) => {
+								setCuadroInformativo(res.data);
+							});
+
+							/* Axios.post('http://localhost:3001/getAuditoriaCSV', values).then((res) => {
 								console.log(res.data);
-							})
-							.then(alert('Registro actualizado')); */
+							}); */
 						}}
 					>
 						<Form className="dates-form" style={{ padding: 0 }} id="mainForm">
@@ -34,7 +45,7 @@ export default function Filter() {
 										<Field
 											className="date-field col-12 col-sm-6"
 											type="date"
-											name="primer_fecha"
+											name="fechaInicio"
 											placeholder=""
 											required
 										/>
@@ -44,7 +55,7 @@ export default function Filter() {
 										<Field
 											className="date-field col-12 col-sm-6"
 											type="date"
-											name="segunda_fecha"
+											name="fechaFin"
 											placeholder=""
 											required
 										/>

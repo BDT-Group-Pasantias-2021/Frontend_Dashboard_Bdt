@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-export default function BarGraph() {
+export default function BarGraph({ titleText }) {
 	const series = [
 		{
-			name: '',
 			data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
 		},
 	];
@@ -39,7 +38,7 @@ export default function BarGraph() {
 			],
 		},
 		title: {
-			text: 'Monthly Inflation in Argentina, 2002',
+			text: titleText,
 			floating: false,
 			offsetY: 0,
 			align: 'left',

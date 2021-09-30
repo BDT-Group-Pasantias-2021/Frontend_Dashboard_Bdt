@@ -6,6 +6,8 @@
 .pnp.js
 
 # testing
+/Backend_Dashbord_Bdt
+/.vscode
 /coverage
 
 # production
