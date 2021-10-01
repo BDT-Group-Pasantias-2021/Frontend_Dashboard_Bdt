@@ -5,7 +5,11 @@ import Axios from 'axios';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 export default function Filter({ setDateInterval, setCuadroInformativo, setInfoPorcentajes }) {
-	//setDateInterval('values');
+	const today = new Date();
+	const dd = String(today.getDate()).padStart(2, '0');
+	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const yyyy = today.getFullYear();
+	const formatedToday = yyyy + '-' + mm + '-' + dd;
 
 	return (
 		<div className="mid-section-row col-12">
@@ -15,20 +19,19 @@ export default function Filter({ setDateInterval, setCuadroInformativo, setInfoP
 					<Formik
 						initialValues={{
 							fechaInicio: '',
-							fechaFin: '',
+							fechaFin: formatedToday,
 						}}
 						validate={(values) => {
 							const errors = {};
 							return errors;
 						}}
 						onSubmit={async (values) => {
-							alert(JSON.stringify(values, null, 2));
 							setDateInterval(values);
 
 							Axios.post('http://localhost:3001/getAuditoriaPorcentajes', values).then((res) => {
 								setInfoPorcentajes(res.data);
 							});
-							
+
 							Axios.post('http://localhost:3001/getAuditoriaCuadroInformativo', values).then((res) => {
 								setCuadroInformativo(res.data);
 							});

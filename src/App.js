@@ -17,13 +17,14 @@ export default function App() {
 
 	const [infoPorcentajes, setInfoPorcentajes] = useState(null);
 	const [cuadroInformativo, setCuadroInformativo] = useState(null);
-	console.log(infoPorcentajes)
+
 	return (
 		<main className="admin">
 			<div className="admin-sections">
 				<div className="graphs row">
 					<h1 className="section-title col-12">Dashboard</h1>
-					<StatsCounter dateInterval={dateInterval} />
+					<StatsCounter dateInterval={dateInterval} infoPorcentajes={infoPorcentajes} />
+
 					<div className="graficos-ind col-12 col-md-6">
 						<Filter
 							setDateInterval={setDateInterval}
