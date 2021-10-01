@@ -1,18 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
+export default function BarGraph({ titleText, object }) {
+	const [categories, setCategories] = useState([]);
+	const [data, setData] = useState([]);
 
-export default function BarGraph({ titleText }) {
-	const series  = [
+	// obtains the key description for every object in the array object
+	useEffect(() => {
+		let categoriesTemp = [];
+		let dataTemp = [];
+
+		if (object !== null) {
+			if (object.length > 0) {
+				for (let j = 0; j < object.length; j++) {
+					if (object[0].Porcentaje !== undefined) {
+						dataTemp.push(object[j].Porcentaje);
+					} else {
+						dataTemp.push(object[j].cantidad);
+					}
+				}
+
+				for (let i = 0; i < object.length; i++) {
+					if (object[0].descripcion !== undefined) {
+						categoriesTemp.push(object[i].descripcion);
+					} else {
+						categoriesTemp.push(object[i].Descripcion);
+					}
+				}
+			}
+		}
+		setData(dataTemp);
+		setCategories(categoriesTemp);
+	}, [object]);
+
+	const series = [
 		{
-			data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+			data,
 		},
 	];
 
 	const options = {
 		chart: {
 			type: 'bar',
-			height: 350,
+			height: 590,
 		},
 		plotOptions: {
 			bar: {
@@ -25,19 +55,7 @@ export default function BarGraph({ titleText }) {
 		},
 		colors: ['#5BA92A'],
 		xaxis: {
-			categories: [
-				
-				'South Korea',
-				'Canada',
-				'United Kingdom',
-				'Netherlands',
-				'Italy',
-				'France',
-				'Japan',
-				'United States',
-				'China',
-				'Germany',
-			],
+			categories,
 		},
 		title: {
 			text: titleText,
@@ -56,9 +74,17 @@ export default function BarGraph({ titleText }) {
 		<div className="graficos-ind col-12 col-md-6">
 			<div className="graph-container">
 				<div className="graph-content">
-					<div id="chart">
-						<ReactApexChart options={options} series={series} type="bar" height={350} />
-					</div>
+					{object !== null && Object.values(object).length > 0 ? (
+						<div id="chart">
+							<ReactApexChart options={options} series={series} type="bar" height={350} />
+						</div>
+					) : (
+						<div className="login-counter-container">
+							<div className="login-container">
+								<div className="counter-text">Seleccione un intervalo de fechas</div>
+							</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

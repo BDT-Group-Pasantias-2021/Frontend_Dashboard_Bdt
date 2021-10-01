@@ -11303,6 +11303,7 @@ html body #root {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.1s ease-in;
+  text-decoration: none;
 }
 .graphs .graficos-ind .mid-section-row .export-container-container .export-container .excel-btn:hover {
   background-color: #288652;

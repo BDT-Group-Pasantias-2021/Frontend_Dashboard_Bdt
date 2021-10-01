@@ -7,7 +7,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 export default function Filter({ setDateInterval, setCuadroInformativo, setInfoPorcentajes }) {
 	const today = new Date();
 	const dd = String(today.getDate()).padStart(2, '0');
-	const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	const mm = String(today.getMonth() + 1).padStart(2, '0');
 	const yyyy = today.getFullYear();
 	const formatedToday = yyyy + '-' + mm + '-' + dd;
 
@@ -27,7 +27,6 @@ export default function Filter({ setDateInterval, setCuadroInformativo, setInfoP
 						}}
 						onSubmit={async (values) => {
 							setDateInterval(values);
-
 							Axios.post('http://localhost:3001/getAuditoriaPorcentajes', values).then((res) => {
 								setInfoPorcentajes(res.data);
 							});
@@ -35,10 +34,6 @@ export default function Filter({ setDateInterval, setCuadroInformativo, setInfoP
 							Axios.post('http://localhost:3001/getAuditoriaCuadroInformativo', values).then((res) => {
 								setCuadroInformativo(res.data);
 							});
-
-							/* Axios.post('http://localhost:3001/getAuditoriaCSV', values).then((res) => {
-								console.log(res.data);
-							}); */
 						}}
 					>
 						<Form className="dates-form" style={{ padding: 0 }} id="mainForm">
